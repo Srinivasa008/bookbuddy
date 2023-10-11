@@ -33,7 +33,7 @@
         }
 
         .login-container h1 {
-            color: #333;
+            color: #fffefe;
         }
 
         .login-container input[type="text"],
@@ -60,25 +60,54 @@
         .login-container input[type="submit"]:hover {
             background-color: #0056b3;
         }
+        #loginMessage{
+            color: rgb(255, 0, 0);
+        }
     </style>
 </head>
 <body>
     
     <div class="login-container">
-        <a href="Circle.html"></a>  
-        <h1 style="color: #fff;">Login</h1>
+        <h1>Login</h1>
         <form id="loginForm" action="javascript:void(0);">
-            <input type="text" name="username" placeholder="Username" required>
-            <input type="password" name="password" placeholder="Password" required>
-            <input type="submit" value="Login" onclick="redirectToCircle()">
+            <input type="text" name="username" id="loginEmail" placeholder="Username" required>
+            <input type="password" name="password" id="loginPassword" placeholder="Password" required>
+            <input type="submit" value="Login">
         </form>
+        <p id="loginMessage"></p>
     </div>
 
     <script>
-        function redirectToCircle() {
-            // Redirect to "Circle.html"
-            window.location.href = "Circle.html";
-        }
+        const loginForm = document.getElementById('loginForm');
+        const loginMessage = document.getElementById('loginMessage');
+
+        loginForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+
+            try {
+                const response = await fetch('http://localhost:9999/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ email, password }),
+                });
+
+                if (response.ok) {
+                    alert('login success');
+                    loginMessage.textContent = 'Login successful';
+                    window.location.href = "Circle.html";
+                } else {
+                    loginMessage.textContent = 'Authentication failed';
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                loginMessage.textContent = 'An error occurred';
+            }
+        });
     </script>
 </body>
 </html>
