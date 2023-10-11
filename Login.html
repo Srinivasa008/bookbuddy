@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unique Login Page</title>
+    <style>
+        img{
+            max-width:100%;
+            object-fit:cover;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display:flex;
+            justify-content: center ;
+            align-items: center;
+            height: 100vh;
+            background-image: url('https://www.spectator.co.uk/wp-content/uploads/2023/03/iStock-1087508538.jpg');
+            background-repeat: no-repeat;
+            background-size:cover;
+            
+        }
+        .login-container {
+            
+            background-color:white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            background-image: url('https://www.spectator.co.uk/wp-content/uploads/2023/03/iStock-1087508538.jpg');
+        }
+
+        .login-container h1 {
+            color: #333;
+        }
+
+        .login-container input[type="text"],
+        .login-container input[type="password"] {
+            position:relative;
+            width: 100%;
+            padding: 10px 10px 10px 10px;
+            margin: 10px 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            right:21px;
+        }
+
+        .login-container input[type="submit"] {
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .login-container input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="login-container">
+        <a href="Circle.html"></a>  
+        <h1 style="color: #fff;">Login</h1>
+        <form id="loginForm" action="javascript:void(0);">
+            <input type="text" name="username" placeholder="Username" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <input type="submit" value="Login" onclick="redirectToCircle()">
+        </form>
+    </div>
+
+    <script>
+        function redirectToCircle() {
+            // Redirect to "Circle.html"
+            window.location.href = "Circle.html";
+        }
+    </script>
+</body>
+</html>

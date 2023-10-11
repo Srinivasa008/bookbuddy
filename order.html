@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+  body{
+    background-image: url();
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover; 
+  }
+  /* Center the content horizontally */
+  .center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+
+  /* Style the form containers */
+  .form-container {
+    text-align: center;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 50px;
+    margin: 10px;
+  }
+
+  /* Style the form labels and inputs */
+  label, input {
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  /* Style the form submit button */
+  input[type="submit"] {
+    margin-top: 20px; /* Increase the top margin to push the button down */
+  }
+
+  /* Clearfix to prevent wrapping issues */
+  .clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+
+  }
+  .form-container {
+    text-align: center;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 50px;
+    margin: 10px;
+    width: 80%; /* Adjust the width as needed */
+    max-width: 600px; /* Optional: Set a maximum width */
+    margin: 0 auto; /* Center the form horizontally within the container */
+  }
+
+</style>
+</head>
+<body>
+
+<div class="center">
+  <div class="form-container">
+    <form action="/action_page.php">
+      <fieldset><table>
+          <legend><b>We Appreciate Your Interest In Reading Books!!</b></legend>
+     
+          <tr>
+            <td><label for="Seller Name">Seller Name:</label></td>
+            <td><input type="text" id="Seller Name" name="Seller Name" required></td>
+          </tr>
+          <tr>
+            <td><label for="Seller Phn number">Seller Phn number:</label></td>
+            <td><input type="tel" id="borrowerPhone" name="Seller phn number" required></td>
+          </tr>
+          <tr>
+            <td><label for="Borrower Name">Borrower Name:</label></td>
+            <td><input type="text" id="Borrower Name" name="Borrower Name" required></td>
+          </tr>
+          <tr>
+            <td><label for="Borrower Phone">Borrower Phone:</label></td>
+            <td><input type="tel" id="Borrower Phone" name="Borrowwer Phone" required></td>
+          </tr>
+         
+          <tr>
+            <td colspan="7"><input type="submit" value="confirm the order"></td>
+          </tr>
+        </table>
+      </fieldset>
+    </form>
+  </div>
+</div>
+
+</body>
+</html>
+
+
+
