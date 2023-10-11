@@ -1,4 +1,6 @@
-<!DOCTYPE html>
+
+
+  <!DOCTYPE html>
 <html>
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -118,28 +120,50 @@ a {
   <script>
     document.addEventListener("DOMContentLoaded", function () {
       const registrationForm = document.getElementById("registrationForm");
-      registrationForm.addEventListener("submit", function (event) {
+      registrationForm.addEventListener("submit", async function (event) {
         event.preventDefault(); // Prevent the form from submitting
-  
+
+        const email = document.getElementById("email").value;
         const password = document.getElementById("psw").value;
         const repeatPassword = document.getElementById("psw-repeat").value;
-  
+
         if (password !== repeatPassword) {
           alert("Error: Password and Repeat Password do not match.");
         } else {
-          // Passwords match, show the success modal
-          const myModal = new bootstrap.Modal(document.getElementById("staticBackdrop"));
-          myModal.show();
-  
-          // Add a click event listener to the "OK" button in the modal
-          document.getElementById("modalOKButton").addEventListener("click", function () {
+          try {
+            const response = await fetch('http://localhost:9999/register', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({ email, password }),
+            });
+
+            if (response.ok) {
+              // Passwords match, show the success modal
+              const myModal = new bootstrap.Modal(document.getElementById("staticBackdrop"));
+              myModal.show();
+              // window.location.href='Login.html'
+              document.getElementById("modalOKButton").addEventListener("click", function () {
             // Redirect to Login.html
             window.location.href = "Login.html";
           });
+            } else {
+              alert('Registration failed');
+            }
+          } catch (error) {
+            console.error('Error:', error);
+            alert('An error occurred');
+          }
         }
       });
     });
   </script>
+  
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</body>
+</html>
   
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
