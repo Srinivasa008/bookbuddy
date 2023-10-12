@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        div {
+            border: 1px solid #ccc;
+            padding: 20px;
+            margin: 20px;
+            border-radius: 5px;
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin: 10px 0;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="tel"],
+        input[type="email"],
+        select,
+        textarea,
+        input[type="date"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin: 5px 0;
+        }
+
+        select {
+            height: 36px;
+        }
+
+        input[type="checkbox"] {
+            margin-right: 5px;
+        }
+
+        #chargeAmount {
+            display: none;
+        }
+
+        /* Optional: Style the submit button if you have one */
+        input[type="submit"] {
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* Optional: Style the file input */
+        input[type="file"] {
+            margin-top: 5px;
+        }
+
+        /* Optional: Style the textarea */
+        textarea {
+            width: 100%;
+        }
+        .but {
+ padding: 15px 25px;
+ border: unset;
+ border-radius: 15px;
+ color: #212121;
+ z-index: 1;
+ background: #e8e8e8;
+ position: relative;
+ font-weight: 1000;
+ font-size: 17px;
+ -webkit-box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
+ box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
+ transition: all 250ms;
+ overflow: hidden;
+}
+
+.but::before {
+ content: "";
+ position: absolute;
+ top: 0;
+ left: 0;
+ height: 100%;
+ width: 0;
+ border-radius: 15px;
+ background-color: #212121;
+ z-index: -1;
+ -webkit-box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
+ box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
+ transition: all 250ms
+}
+
+.but:hover {
+ color: #e8e8e8;
+}
+
+.but:hover::before {
+ width: 100%;
+}
+
+        /* Add more styles as needed for your specific design preferences */
+    </style>
+</head>
+<body>
+  <div>
+    <label>Book details:</label>
+    <br>
+    <label>Book title:</label>
+    <input type="text" name="title">
+    <br>
+
+    <label>Author:</label>
+    <input type="text" name="author">
+    <br>
+
+    <label>Pages:</label>
+    <input type="number" name="pages">
+    <br>
+
+    <label for="genre">Genre:</label>
+    <select id="genre" name="genre">
+        <option value="Technical">Technical</option>
+        <option value="Self-Help">Self-Help</option>
+        <option value="Fiction">Fiction</option>
+        <option value="Non-fiction">Non-Fiction</option>
+        <option value="Biography">Biography</option>
+    </select>
+    <br>
+    
+    <label for="chargePerDay">Charge per day:</label>
+    <input type="checkbox" id="chargePerDay" name="chargePerDay" onclick="toggleChargeAmount()">
+    <div id="chargeAmount" style="display: none;">
+        <label for="charge">Charge Amount:</label>
+        <input type="text" id="charge" name="charge">
+    </div>
+    <br>
+
+    <label for="freeOfCost">Free of Cost:</label>
+    <input type="checkbox" id="freeOfCost" name="freeOfCost">
+    <br>
+
+    <label for="image">Image:</label>
+    <input type="file" name="image" id="image">
+    <br>
+
+    <label for="synopsis">Synopsis:</label>
+    <textarea id="synopsis" name="synopsis" rows="4" cols="50"></textarea>
+    <br>
+    
+    <label for="Personal info">Personal info:</label>
+    <br>
+
+    <label for="Name">Name:</label>
+    <input type="text" name="Name">
+    <br>
+
+    <label for="birthday">Date of Birth:</label>
+    <input type="date" id="birthday" name="birthday">
+    <br>
+
+    <label>Gender:</label>
+    <select id="gender" name="gender">
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+        <option value="Other">Other</option>
+        <option value="Prefer-not-say">Prefer not to say</option>
+    </select>
+    <br>
+
+    <label for="email">Email:</label>
+    <input type="email" name="email">
+    <br>
+
+    <label for="phone">Phone number:</label>
+    <input type="tel" name="phone">
+    <br>
+
+    <label for="pincode">Pincode:</label>
+    <input type="text" name="pincode">
+    <br>
+
+    <button class="but" id="submit-button">Submit</button>
+</div>
+    <script>
+      function toggleChargeAmount() {
+        var perdaychargeCheckbox = document.getElementById("chargePerDay");
+        var freeofcostCheckbox = document.getElementById("freeofcost");
+          var chargeAmountDiv = document.getElementById("chargeAmount");
+    
+          if (perdaychargeCheckbox.checked) {
+              chargeAmountDiv.style.display = "block";
+              freeofcostCheckbox.checked = false;
+          } else if (freeofcostCheckbox.checked) {
+              chargeAmountDiv.style.display = "none";
+              perdaychargeCheckbox.checked = false;
+          } else {
+              chargeAmountDiv.style.display = "none";
+          }
+      }
+
+      document.getElementById("submit-button").addEventListener("click", async () => {
+    const chargePerDayCheckbox = document.querySelector('input[name="chargePerDay"]');
+    let chargeValue = 0;
+    let freeOfCost = 0;
+
+    if (chargePerDayCheckbox.checked) {
+        chargeValue = parseFloat(document.querySelector('input[name="charge"]').value);
+        freeOfCost = 0;
+    } else {
+        chargeValue = 0;
+        freeOfCost = document.querySelector('input[name="freeOfCost"]').checked ? 1 : 0;
+    }
+
+    const bookData = {
+        bookDetails: {
+            title: document.querySelector('input[name="title"]').value,
+            author: document.querySelector('input[name="author"]').value,
+            pages: parseInt(document.querySelector('input[name="pages"]').value),
+            genre: document.querySelector('select[name="genre"]').value,
+            chargePerDay: chargeValue,
+            freeOfCost: freeOfCost,
+            image: document.querySelector('input[name="image"]').value,
+            synopsis: document.querySelector('textarea[name="synopsis"]').value,
+        },
+        personalInfo: {
+            Name: document.querySelector('input[name="Name"]').value,
+            birthday: document.querySelector('input[name="birthday"]').value,
+            gender: document.querySelector('select[name="gender"]').value,
+            email: document.querySelector('input[name="email"]').value,
+            phone: document.querySelector('input[name="phone"]').value,
+            pincode: document.querySelector('input[name="pincode"]').value,
+        }
+    };
+
+    // Send a POST request to the server
+    try {
+        const response = await fetch("http://localhost:9999/book", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(bookData)
+        });
+
+        if (response.ok) {
+            const responseData = await response.json();
+            alert(responseData.message); 
+            window.location.href='booksoption.html'
+        } else {
+            alert("Failed to register the book.");
+        }
+    } catch (error) {
+        console.error("Error:", error);
+        alert("Internal server error");
+    }
+});
+
+      </script>
+</body>
+</html>
